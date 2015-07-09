@@ -1,0 +1,44 @@
+buildscript {
+    repositories {
+        maven { url 'http://repo.springsource.org/libs-snapshot' }
+        mavenLocal()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE")
+    }
+}
+
+//apply plugin: 'java'
+//apply plugin: 'eclipse'
+//apply plugin: 'idea'
+//apply plugin: 'spring-boot'
+apply plugin: 'spring-boot'
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'war'
+
+jar {
+    baseName = 'gs-securing-web'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url 'http://repo.springsource.org/libs-snapshot' }
+    maven { url 'https://repo.spring.io/plugins-release' }
+    maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("org.springframework.boot:spring-boot-starter-security")
+    testCompile("junit:junit")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
